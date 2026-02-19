@@ -21,7 +21,7 @@ export default function Sidebar({ currentView, onViewChange, selectedServiceName
   return (
     <aside className="fixed top-0 left-0 bottom-0 w-28 bg-expedia-sidebar flex flex-col z-50">
       <div className="flex flex-col items-center pt-5 pb-4 border-b border-white/10">
-        <span className="text-base font-bold text-expedia-accent tracking-tight">Sentinel</span>
+        <span className="text-base font-bold text-expedia-accent tracking-tight">Expedia</span>
       </div>
 
       <nav className="flex-1 flex flex-col items-center gap-1 py-4 px-2 overflow-y-auto">
