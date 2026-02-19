@@ -9,6 +9,10 @@
   --color-expedia-text: #1E243A;
   --color-expedia-muted: #6B7280;
   --color-expedia-light: #F0F1F5;
+  --color-expedia-sidebar: #171A28;
+  --color-expedia-sidebar-hover: #242840;
+  --color-expedia-sidebar-active: #2E3350;
+  --color-expedia-sidebar-text: #B0B4C8;
 }
 
 :root {

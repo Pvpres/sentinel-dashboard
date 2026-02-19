@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import type { Brand, ViewType } from './types';
-import TopNav from './components/TopNav';
 import Sidebar from './components/Sidebar';
 import GlobalHealth from './components/GlobalHealth';
 import BrandParity from './components/BrandParity';
@@ -36,7 +35,7 @@ function App() {
   const renderContent = () => {
     switch (currentView) {
       case 'global-health':
-        return <GlobalHealth brand={brand} />;
+        return <GlobalHealth brand={brand} onBrandChange={setBrand} />;
       case 'brand-parity':
         return <BrandParity />;
       case 'cluster-manager':
@@ -50,28 +49,23 @@ function App() {
       case 'service-catalog':
         return <ServiceCatalog brand={brand} onServiceSelect={handleServiceSelect} />;
       case 'service-detail':
-        return selectedService ? <ServiceDetail serviceName={selectedService} /> : <GlobalHealth brand={brand} />;
+        return selectedService ? <ServiceDetail serviceName={selectedService} /> : <GlobalHealth brand={brand} onBrandChange={setBrand} />;
       default:
-        return <GlobalHealth brand={brand} />;
+        return <GlobalHealth brand={brand} onBrandChange={setBrand} />;
     }
   };
 
   return (
     <div className="min-h-screen bg-expedia-bg">
-      <TopNav selectedBrand={brand} onBrandChange={setBrand} />
-      <div className="max-w-7xl mx-auto pt-14">
-        <div className="grid grid-cols-[260px_1fr]">
-          <Sidebar
-            currentView={currentView}
-            onViewChange={handleViewChange}
-            selectedServiceName={selectedService}
-            onBackToFleet={handleBackToFleet}
-          />
-          <main className="px-4 py-4 gap-4">
-            {renderContent()}
-          </main>
-        </div>
-      </div>
+      <Sidebar
+        currentView={currentView}
+        onViewChange={handleViewChange}
+        selectedServiceName={selectedService}
+        onBackToFleet={handleBackToFleet}
+      />
+      <main className="ml-28">
+        {renderContent()}
+      </main>
     </div>
   );
 }

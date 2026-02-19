@@ -1,53 +1,21 @@
-import type { Brand } from '../types';
+import type { ReactNode } from 'react';
 
-interface TopNavProps {
-  selectedBrand: Brand;
-  onBrandChange: (brand: Brand) => void;
+interface PageHeaderProps {
+  title: string;
+  subtitle?: string;
+  children?: ReactNode;
 }
 
-const brandLabels: Record<Brand, string> = {
-  unified: 'Unified View',
-  expedia: 'Expedia',
-  hotels: 'Hotels.com',
-  vrbo: 'Vrbo',
-};
-
-export default function TopNav({ selectedBrand, onBrandChange }: TopNavProps) {
+export default function PageHeader({ title, subtitle, children }: PageHeaderProps) {
   return (
-    <header className="h-14 bg-expedia-blue flex items-center justify-between px-6 fixed top-0 left-0 right-0 z-50">
-      <div className="flex items-center gap-3">
-        <span className="text-lg font-bold text-white tracking-tight">Expedia</span>
-        <span className="text-xs text-expedia-accent font-medium">Sentinel</span>
-        <span className="text-xs text-slate-400 border-l border-slate-600 pl-3 hidden sm:inline">Platform Console</span>
+    <div className="bg-gradient-to-r from-expedia-blue via-expedia-blue to-blue-800 px-8 py-8">
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-white">{title}</h1>
+          {subtitle && <p className="text-sm text-white/60 mt-1">{subtitle}</p>}
+        </div>
+        {children && <div className="flex items-center gap-3">{children}</div>}
       </div>
-
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-slate-400">Brand:</span>
-          <select
-            value={selectedBrand}
-            onChange={(e) => onBrandChange(e.target.value as Brand)}
-            className="bg-white/10 border border-white/20 rounded-md px-3 py-1.5 text-sm text-white focus:outline-none focus:border-expedia-accent cursor-pointer"
-          >
-            {(Object.keys(brandLabels) as Brand[]).map((brand) => (
-              <option key={brand} value={brand} className="text-expedia-blue">{brandLabels[brand]}</option>
-            ))}
-          </select>
-        </div>
-
-        <div className="h-6 w-px bg-white/20" />
-
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-xs text-slate-300">All Systems Nominal</span>
-        </div>
-
-        <div className="h-6 w-px bg-white/20" />
-
-        <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-xs text-white">
-          PL
-        </div>
-      </div>
-    </header>
+    </div>
   );
 }
