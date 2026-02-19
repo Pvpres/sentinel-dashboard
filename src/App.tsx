@@ -57,17 +57,21 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f1117]">
+    <div className="min-h-screen bg-expedia-bg">
       <TopNav selectedBrand={brand} onBrandChange={setBrand} />
-      <Sidebar
-        currentView={currentView}
-        onViewChange={handleViewChange}
-        selectedServiceName={selectedService}
-        onBackToFleet={handleBackToFleet}
-      />
-      <main className="ml-60 pt-14 p-6">
-        {renderContent()}
-      </main>
+      <div className="max-w-7xl mx-auto pt-14">
+        <div className="grid grid-cols-[260px_1fr]">
+          <Sidebar
+            currentView={currentView}
+            onViewChange={handleViewChange}
+            selectedServiceName={selectedService}
+            onBackToFleet={handleBackToFleet}
+          />
+          <main className="px-4 py-4 gap-4">
+            {renderContent()}
+          </main>
+        </div>
+      </div>
     </div>
   );
 }

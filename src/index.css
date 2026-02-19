@@ -1,11 +1,22 @@
 @import "tailwindcss";
 
+@theme {
+  --color-expedia-blue: #1E243A;
+  --color-expedia-accent: #FEBF4F;
+  --color-expedia-bg: #F6F7FB;
+  --color-expedia-card: #FFFFFF;
+  --color-expedia-border: #E6E8F0;
+  --color-expedia-text: #1E243A;
+  --color-expedia-muted: #6B7280;
+  --color-expedia-light: #F0F1F5;
+}
+
 :root {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #e2e8f0;
-  background-color: #0f1117;
+  color: #1E243A;
+  background-color: #F6F7FB;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -36,14 +47,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1d2e;
+  background: #F0F1F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2d3148;
+  background: #D1D5DB;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3d4168;
+  background: #9CA3AF;
 }
