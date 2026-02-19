@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import type { Brand, ViewType } from './types';
-import TopNav from './components/TopNav';
 import Sidebar from './components/Sidebar';
 import GlobalHealth from './components/GlobalHealth';
 import BrandParity from './components/BrandParity';
@@ -36,7 +35,7 @@ function App() {
   const renderContent = () => {
     switch (currentView) {
       case 'global-health':
-        return <GlobalHealth brand={brand} />;
+        return <GlobalHealth brand={brand} onBrandChange={setBrand} />;
       case 'brand-parity':
         return <BrandParity />;
       case 'cluster-manager':
@@ -50,22 +49,21 @@ function App() {
       case 'service-catalog':
         return <ServiceCatalog brand={brand} onServiceSelect={handleServiceSelect} />;
       case 'service-detail':
-        return selectedService ? <ServiceDetail serviceName={selectedService} /> : <GlobalHealth brand={brand} />;
+        return selectedService ? <ServiceDetail serviceName={selectedService} /> : <GlobalHealth brand={brand} onBrandChange={setBrand} />;
       default:
-        return <GlobalHealth brand={brand} />;
+        return <GlobalHealth brand={brand} onBrandChange={setBrand} />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#0f1117]">
-      <TopNav selectedBrand={brand} onBrandChange={setBrand} />
+    <div className="min-h-screen bg-expedia-bg">
       <Sidebar
         currentView={currentView}
         onViewChange={handleViewChange}
         selectedServiceName={selectedService}
         onBackToFleet={handleBackToFleet}
       />
-      <main className="ml-60 pt-14 p-6">
+      <main className="ml-28">
         {renderContent()}
       </main>
     </div>

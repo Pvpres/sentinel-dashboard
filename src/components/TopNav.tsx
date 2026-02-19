@@ -1,55 +1,21 @@
-import type { Brand } from '../types';
+import type { ReactNode } from 'react';
 
-interface TopNavProps {
-  selectedBrand: Brand;
-  onBrandChange: (brand: Brand) => void;
+interface PageHeaderProps {
+  title: string;
+  subtitle?: string;
+  children?: ReactNode;
 }
 
-const brandLabels: Record<Brand, string> = {
-  unified: 'Unified View',
-  expedia: 'Expedia',
-  hotels: 'Hotels.com',
-  vrbo: 'Vrbo',
-};
-
-export default function TopNav({ selectedBrand, onBrandChange }: TopNavProps) {
+export default function PageHeader({ title, subtitle, children }: PageHeaderProps) {
   return (
-    <header className="h-14 bg-[#12141f] border-b border-[#1e2235] flex items-center justify-between px-6 fixed top-0 left-0 right-0 z-50">
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm">S</div>
-          <span className="text-lg font-semibold text-white tracking-tight">Sentinel</span>
+    <div className="bg-gradient-to-r from-expedia-blue via-expedia-blue to-blue-800 px-8 py-8">
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-white">{title}</h1>
+          {subtitle && <p className="text-sm text-white/60 mt-1">{subtitle}</p>}
         </div>
-        <span className="text-xs text-slate-500 border-l border-slate-700 pl-4 hidden sm:inline">Expedia Group Platform Console</span>
+        {children && <div className="flex items-center gap-3">{children}</div>}
       </div>
-
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-slate-400">Brand:</span>
-          <select
-            value={selectedBrand}
-            onChange={(e) => onBrandChange(e.target.value as Brand)}
-            className="bg-[#1a1d2e] border border-[#2a2d45] rounded-md px-3 py-1.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 cursor-pointer"
-          >
-            {(Object.keys(brandLabels) as Brand[]).map((brand) => (
-              <option key={brand} value={brand}>{brandLabels[brand]}</option>
-            ))}
-          </select>
-        </div>
-
-        <div className="h-6 w-px bg-slate-700" />
-
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-xs text-slate-400">All Systems Nominal</span>
-        </div>
-
-        <div className="h-6 w-px bg-slate-700" />
-
-        <div className="w-8 h-8 rounded-full bg-[#1a1d2e] border border-[#2a2d45] flex items-center justify-center text-xs text-slate-300">
-          PL
-        </div>
-      </div>
-    </header>
+    </div>
   );
 }
